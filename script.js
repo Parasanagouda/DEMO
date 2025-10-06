@@ -1,4 +1,4 @@
-    document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     const chatMessages = document.getElementById('chatMessages');
     const chatInput = document.getElementById('chatInput');
     const sendButton = document.getElementById('sendButton');
@@ -143,4 +143,14 @@
     
     // Focus on input when page loads
     chatInput.focus();
+    
+    // Auto-adjust scroll position for mobile
+    function adjustScroll() {
+        setTimeout(() => {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }, 100);
+    }
+    
+    // Adjust scroll on window resize (keyboard appearance on mobile)
+    window.addEventListener('resize', adjustScroll);
 });
