@@ -28,63 +28,28 @@ body {
 .chat-header {
     background-color: var(--indigo-dye);
     color: var(--white);
-    padding: 20px;
+    padding: 15px 20px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     z-index: 10;
+    flex-shrink: 0;
 }
 
 .chat-header h1 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 500;
-}
-
-.chat-messages {
-    flex: 1;
-    padding: 20px;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    background-color: var(--white);
-}
-
-.message {
-    max-width: 80%;
-    padding: 12px 16px;
-    border-radius: 18px;
-    line-height: 1.4;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.user-message {
-    align-self: flex-end;
-    background-color: var(--indigo-dye);
-    color: var(--white);
-    border-bottom-right-radius: 5px;
-}
-
-.bot-message {
-    align-self: flex-start;
-    background-color: var(--platinum);
-    color: #333;
-    border-bottom-left-radius: 5px;
-}
-
-.bot-message ul {
-    margin-top: 8px;
-    padding-left: 20px;
-}
-
-.bot-message li {
-    margin-bottom: 5px;
+    text-align: center;
 }
 
 .chat-input-container {
-    padding: 20px;
-    border-top: 1px solid var(--platinum);
+    padding: 15px;
+    border-bottom: 1px solid var(--platinum);
     display: flex;
     gap: 10px;
     background-color: var(--white);
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    z-index: 5;
 }
 
 .chat-input {
@@ -94,6 +59,7 @@ body {
     border-radius: 24px;
     outline: none;
     font-size: 1rem;
+    background-color: var(--white);
 }
 
 .chat-input:focus {
@@ -112,6 +78,7 @@ body {
     align-items: center;
     cursor: pointer;
     transition: background-color 0.2s;
+    flex-shrink: 0;
 }
 
 .send-button:hover {
@@ -123,6 +90,49 @@ body {
     cursor: not-allowed;
 }
 
+.chat-messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background-color: var(--white);
+}
+
+.message {
+    max-width: 85%;
+    padding: 12px 16px;
+    border-radius: 18px;
+    line-height: 1.4;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    word-wrap: break-word;
+}
+
+.user-message {
+    align-self: flex-end;
+    background-color: var(--indigo-dye);
+    color: var(--white);
+    border-bottom-right-radius: 5px;
+}
+
+.bot-message {
+    align-self: flex-start;
+    background-color: var(--platinum);
+    color: #333;
+    border-bottom-left-radius: 5px;
+}
+
+.bot-message ul {
+    margin-top: 8px;
+    padding-left: 18px;
+}
+
+.bot-message li {
+    margin-bottom: 4px;
+    line-height: 1.4;
+}
+
 .typing-indicator {
     display: none;
     align-self: flex-start;
@@ -132,13 +142,14 @@ body {
     border-bottom-left-radius: 5px;
     color: #666;
     font-style: italic;
+    margin: 0 15px 15px;
 }
 
 .dot-flashing {
     position: relative;
-    width: 10px;
-    height: 10px;
-    border-radius: 5px;
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
     background-color: #666;
     color: #666;
     animation: dotFlashing 1s infinite linear alternate;
@@ -155,10 +166,10 @@ body {
 }
 
 .dot-flashing::before {
-    left: -15px;
-    width: 10px;
-    height: 10px;
-    border-radius: 5px;
+    left: -12px;
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
     background-color: #666;
     color: #666;
     animation: dotFlashing 1s infinite alternate;
@@ -166,10 +177,10 @@ body {
 }
 
 .dot-flashing::after {
-    left: 15px;
-    width: 10px;
-    height: 10px;
-    border-radius: 5px;
+    left: 12px;
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
     background-color: #666;
     color: #666;
     animation: dotFlashing 1s infinite alternate;
@@ -187,7 +198,7 @@ body {
 
 /* Scrollbar styling */
 .chat-messages::-webkit-scrollbar {
-    width: 6px;
+    width: 4px;
 }
 
 .chat-messages::-webkit-scrollbar-track {
@@ -196,5 +207,73 @@ body {
 
 .chat-messages::-webkit-scrollbar-thumb {
     background: var(--indigo-dye);
-    border-radius: 3px;
+    border-radius: 2px;
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 768px) {
+    .chat-header {
+        padding: 12px 15px;
+    }
+    
+    .chat-header h1 {
+        font-size: 1.2rem;
+    }
+    
+    .chat-input-container {
+        padding: 12px 15px;
+    }
+    
+    .chat-input {
+        padding: 10px 14px;
+        font-size: 0.95rem;
+    }
+    
+    .send-button {
+        width: 42px;
+        height: 42px;
+    }
+    
+    .chat-messages {
+        padding: 12px 15px;
+        gap: 10px;
+    }
+    
+    .message {
+        max-width: 90%;
+        padding: 10px 14px;
+        font-size: 0.95rem;
+    }
+    
+    .bot-message ul {
+        padding-left: 16px;
+    }
+    
+    .typing-indicator {
+        margin: 0 15px 12px;
+        padding: 10px 14px;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .chat-header {
+        padding: 10px 12px;
+    }
+    
+    .chat-header h1 {
+        font-size: 1.1rem;
+    }
+    
+    .chat-input-container {
+        padding: 10px 12px;
+    }
+    
+    .chat-messages {
+        padding: 10px 12px;
+    }
+    
+    .message {
+        max-width: 95%;
+    }
 }
